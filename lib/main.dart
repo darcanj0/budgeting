@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'models/transaction.dart';
+
 void main(List<String> args) {
   runApp(const BudgetingApp());
 }
@@ -10,14 +12,22 @@ class BudgetingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return CupertinoApp(
       home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final transactions = [
+    Transaction(id: 'id1', title: 'Tênis', value: 350, date: DateTime.now()),
+    Transaction(id: 'id2', title: 'Café da manhã', value: 20, date: DateTime.now()),
+    Transaction(id: 'id3', title: 'Mercado da semana', value: 250, date: DateTime.now()),
+    Transaction(id: 'id4', title: 'Garrafa de água', value: 15, date: DateTime.now()),
+    Transaction(id: 'id5', title: 'Assinatura do Game Pass', value: 30, date: DateTime.now())
+  ];
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
