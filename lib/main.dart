@@ -54,17 +54,29 @@ class HomePage extends StatelessWidget {
               child: Card(
                 color: Colors.green,
                 elevation: 5,
-                child: Text('Card 1'),
+                child: Center(child: Text('Dashboard')),
               ),
             ),
-            Column(
-              children: [
-                ..._transactions.map((transaction) => Card(
-                      elevation: 5,
-                      child: Text(transaction.title),
-                    ))
-              ],
-            )
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              ..._transactions.map((transaction) => Card(
+                    elevation: 5,
+                    shape: const ContinuousRectangleBorder(
+                        borderRadius:
+                            BorderRadius.all(Radius.elliptical(10, 10))),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(transaction.value.toString()),
+                          Column(
+                            children: [
+                              Text(transaction.title),
+                              Text(transaction.date.toLocal().toString())
+                            ],
+                          )
+                        ]),
+                  ))
+            ])
           ],
         ),
       ),
