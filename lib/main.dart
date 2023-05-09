@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'models/transaction.dart';
 
@@ -79,7 +80,8 @@ class HomePage extends StatelessWidget {
                                       fontSize: 16),
                                 ),
                                 Text(
-                                  transaction.date.toString(),
+                                  DateFormat('d/MMM/y')
+                                      .format(transaction.date),
                                   style: const TextStyle(color: Colors.grey),
                                 )
                               ],
