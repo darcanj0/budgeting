@@ -67,13 +67,41 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(transaction.value.toString()),
-                          Column(
-                            children: [
-                              Text(transaction.title),
-                              Text(transaction.date.toLocal().toString())
-                            ],
-                          )
+                          Container(
+                            margin: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  transaction.title,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                Text(
+                                  transaction.date.toString(),
+                                  style: const TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                              margin: const EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 20),
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey, width: 1),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10))),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 5),
+                              child: Text(
+                                'R\$ ${transaction.value.toStringAsFixed(2)}',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.red),
+                              )),
                         ]),
                   ))
             ])
