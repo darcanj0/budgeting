@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateTransactionForm extends StatelessWidget {
-  const CreateTransactionForm({super.key});
+  CreateTransactionForm({super.key});
+
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +15,13 @@ class CreateTransactionForm extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              const CupertinoTextField(
+              CupertinoTextField(
                 placeholder: 'Título',
+                controller: titleController,
               ),
-              const CupertinoTextField(
+              CupertinoTextField(
                 placeholder: 'Valor (R\$)',
+                controller: valueController,
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -27,7 +32,10 @@ class CreateTransactionForm extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: CupertinoButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(
+                              "${titleController.text}, ${valueController.text}");
+                        },
                         color: Colors.green,
                         padding: const EdgeInsets.all(10),
                         child: const Text(
