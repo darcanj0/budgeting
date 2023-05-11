@@ -44,7 +44,7 @@ class TransactionCard extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(10))),
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: Text(
-                  'R\$ ${_transaction.value.toStringAsFixed(2)}',
+                  'U\$ ${_transaction.value.toStringAsFixed(2)}',
                   style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,

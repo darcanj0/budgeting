@@ -7,10 +7,20 @@ import 'package:flutter/material.dart';
 class CreateTransactionForm extends StatelessWidget {
   CreateTransactionForm({super.key, required this.onSubmit});
 
+  final void Function(Transaction) onSubmit;
   final titleController = TextEditingController();
   final valueController = TextEditingController();
 
-  final void Function(Transaction) onSubmit;
+  void _submitForm() {
+    final Transaction newTransaction = Transaction(
+        id: Random().nextDouble().toString(),
+        title: titleController.text,
+        value: double.tryParse(valueController.text) as double,
+        date: DateTime.now());
+
+    if (newTransaction.title.isEmpty || newTransaction.value <= 0) return;
+    onSubmit(newTransaction);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +31,16 @@ class CreateTransactionForm extends StatelessWidget {
           child: Column(
             children: [
               CupertinoTextField(
-                placeholder: 'Título',
+                placeholder: 'Title',
                 controller: titleController,
+                onSubmitted: (value) => _submitForm(),
               ),
               CupertinoTextField(
-                placeholder: 'Valor (R\$)',
+                placeholder: 'Value (U\$D)',
                 controller: valueController,
+                onSubmitted: (value) => _submitForm(),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -37,18 +51,11 @@ class CreateTransactionForm extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: CupertinoButton(
-                        onPressed: () {
-                          final Transaction newTransaction = Transaction(
-                              id: Random().nextDouble().toString(),
-                              title: titleController.text,
-                              value: double.parse(valueController.text),
-                              date: DateTime.now());
-                          onSubmit(newTransaction);
-                        },
+                        onPressed: () => _submitForm(),
                         color: Colors.green,
                         padding: const EdgeInsets.all(10),
                         child: const Text(
-                          'Nova Transação',
+                          'New Transaction',
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
