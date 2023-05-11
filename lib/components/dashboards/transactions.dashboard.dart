@@ -1,11 +1,7 @@
-import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsDashboard extends StatelessWidget {
-  late final List<Transaction> _transactions;
-  TransactionsDashboard({super.key, required List<Transaction> transactions}) {
-    _transactions = transactions;
-  }
+  const TransactionsDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {

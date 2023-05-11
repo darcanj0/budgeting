@@ -27,6 +27,21 @@ class _TransactionUserState extends State<TransactionUser> {
         id: 'id5',
         title: 'Assinatura do Game Pass',
         value: 30,
+        date: DateTime.now()),
+    Transaction(id: 'id1', title: 'Tênis', value: 350, date: DateTime.now()),
+    Transaction(
+        id: 'id2', title: 'Café da manhã', value: 20, date: DateTime.now()),
+    Transaction(
+        id: 'id3',
+        title: 'Mercado da semana',
+        value: 250,
+        date: DateTime.now()),
+    Transaction(
+        id: 'id4', title: 'Garrafa de água', value: 15, date: DateTime.now()),
+    Transaction(
+        id: 'id5',
+        title: 'Assinatura do Game Pass',
+        value: 30,
         date: DateTime.now())
   ];
 
