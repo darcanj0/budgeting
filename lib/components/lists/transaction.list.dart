@@ -8,9 +8,15 @@ class TransactionList extends StatelessWidget {
   const TransactionList({super.key, required this.transactions});
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      ...transactions
-          .map((transaction) => TransactionCard(transaction: transaction))
-    ]);
+    return SizedBox(
+      height: 450,
+      child: SingleChildScrollView(
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          ...transactions
+              .map((transaction) => TransactionCard(transaction: transaction))
+        ]),
+      ),
+    );
   }
 }

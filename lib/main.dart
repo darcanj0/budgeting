@@ -10,7 +10,7 @@ class BudgetingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return const CupertinoApp(
       home: HomePage(),
     );
   }

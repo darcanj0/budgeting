@@ -12,11 +12,13 @@ class HomePage extends StatelessWidget {
       navigationBar: const CupertinoNavigationBar(
         middle: Text('Navigation'),
       ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const [TransactionsDashboard(), TransactionUser()],
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [TransactionsDashboard(), TransactionUser()],
+          ),
         ),
       ),
     );

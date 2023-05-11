@@ -6,7 +6,7 @@ class TransactionsDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 60),
+      margin: const EdgeInsets.only(top: 120, bottom: 60),
       child: const Card(
         color: Colors.green,
         elevation: 5,
