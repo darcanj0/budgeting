@@ -1,11 +1,16 @@
+import 'dart:math';
+
+import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateTransactionForm extends StatelessWidget {
-  CreateTransactionForm({super.key});
+  CreateTransactionForm({super.key, required this.onSubmit});
 
   final titleController = TextEditingController();
   final valueController = TextEditingController();
+
+  final void Function(Transaction) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +38,12 @@ class CreateTransactionForm extends StatelessWidget {
                       width: 150,
                       child: CupertinoButton(
                         onPressed: () {
-                          print(
-                              "${titleController.text}, ${valueController.text}");
+                          final Transaction newTransaction = Transaction(
+                              id: Random().nextDouble().toString(),
+                              title: titleController.text,
+                              value: double.parse(valueController.text),
+                              date: DateTime.now());
+                          onSubmit(newTransaction);
                         },
                         color: Colors.green,
                         padding: const EdgeInsets.all(10),
