@@ -1,8 +1,7 @@
+import 'package:budgeting/components/users/transaction.user.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../components/cards/transaction.card.dart';
 import '../components/dashboards/transactions.dashboard.dart';
-import '../components/forms/create-transaction.form.dart';
 import '../models/transaction.dart';
 
 class HomePage extends StatelessWidget {
@@ -38,13 +37,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TransactionsDashboard(transactions: _transactions),
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              ..._transactions.map(
-                  (transaction) => TransactionCard(transaction: transaction))
-            ]),
-            CreateTransactionForm(
-              key: key,
-            )
+            const TransactionUser()
           ],
         ),
       ),
