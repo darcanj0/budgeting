@@ -30,13 +30,13 @@ class CreateTransactionForm extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              CupertinoTextField(
-                placeholder: 'Title',
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
                 controller: titleController,
                 onSubmitted: (value) => _submitForm(),
               ),
-              CupertinoTextField(
-                placeholder: 'Value (U\$D)',
+              TextField(
+                decoration: const InputDecoration(labelText: 'Value (U\$D)'),
                 controller: valueController,
                 onSubmitted: (value) => _submitForm(),
                 keyboardType:

@@ -1,5 +1,5 @@
 import 'package:budgeting/pages/home.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main(List<String> args) {
   runApp(const BudgetingApp());
@@ -10,7 +10,7 @@ class BudgetingApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return const MaterialApp(
       home: HomePage(),
     );
   }
