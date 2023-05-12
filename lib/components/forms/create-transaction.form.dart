@@ -52,7 +52,7 @@ class CreateTransactionForm extends StatelessWidget {
                       width: 150,
                       child: CupertinoButton(
                         onPressed: () => _submitForm(),
-                        color: Colors.green,
+                        color: CupertinoColors.activeBlue,
                         padding: const EdgeInsets.all(10),
                         child: const Text(
                           'New Transaction',

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsDashboard extends StatelessWidget {
@@ -8,7 +9,7 @@ class TransactionsDashboard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 120, bottom: 60),
       child: const Card(
-        color: Colors.green,
+        color: CupertinoColors.activeBlue,
         elevation: 5,
         child: Center(child: Text('Dashboard')),
       ),

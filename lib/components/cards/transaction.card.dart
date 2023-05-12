@@ -39,9 +39,6 @@ class TransactionCard extends StatelessWidget {
             Container(
                 margin:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey, width: 1),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))),
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: Text(
                   'U\$ ${_transaction.value.toStringAsFixed(2)}',

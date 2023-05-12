@@ -1,3 +1,4 @@
+import 'package:budgeting/components/buttons/nav.icon-button.dart';
 import 'package:budgeting/components/users/transaction.user.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,7 +11,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text('Navigation'),
+        middle: Text('Transactions'),
+        trailing: NavIconButton(),
       ),
       child: SingleChildScrollView(
         child: Center(
