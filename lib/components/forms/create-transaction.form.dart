@@ -4,11 +4,18 @@ import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CreateTransactionForm extends StatelessWidget {
-  CreateTransactionForm({super.key, required this.onSubmit});
+class CreateTransactionForm extends StatefulWidget {
+  const CreateTransactionForm({super.key, required this.onSubmit});
 
   final void Function(Transaction) onSubmit;
+
+  @override
+  State<CreateTransactionForm> createState() => _CreateTransactionFormState();
+}
+
+class _CreateTransactionFormState extends State<CreateTransactionForm> {
   final titleController = TextEditingController();
+
   final valueController = TextEditingController();
 
   void _submitForm() {
@@ -19,7 +26,7 @@ class CreateTransactionForm extends StatelessWidget {
         date: DateTime.now());
 
     if (newTransaction.title.isEmpty || newTransaction.value <= 0) return;
-    onSubmit(newTransaction);
+    widget.onSubmit(newTransaction);
   }
 
   @override
