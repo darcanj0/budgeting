@@ -39,7 +39,7 @@ class HomePageState extends State<HomePage> {
   }
 
   void _openCreateTransactionFormModal(BuildContext context) {
-    showCupertinoModalPopup(
+    showModalBottomSheet(
         context: context,
         builder: (_) {
           return SingleChildScrollView(
