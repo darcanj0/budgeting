@@ -21,7 +21,7 @@ class BudgetingApp extends StatelessWidget {
         ),
         colorScheme: Theme.of(context).colorScheme.copyWith(
           primary: Colors.purple,
-          secondary: Colors.greenAccent.shade700,
+          secondary: Colors.green.shade700,
         )
       ),
     );

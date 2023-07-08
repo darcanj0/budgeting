@@ -1,5 +1,4 @@
 import 'package:budgeting/components/forms/create-transaction.form.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../components/dashboards/transactions.dashboard.dart';
@@ -14,23 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(id: 'id1', title: 'Tênis', value: 350, date: DateTime.now()),
-    Transaction(
-        id: 'id2', title: 'Café da manhã', value: 20, date: DateTime.now()),
-    Transaction(
-        id: 'id3',
-        title: 'Mercado da semana',
-        value: 250,
-        date: DateTime.now()),
-    Transaction(
-        id: 'id4', title: 'Garrafa de água', value: 15, date: DateTime.now()),
-    Transaction(
-        id: 'id5',
-        title: 'Assinatura do Game Pass',
-        value: 30,
-        date: DateTime.now()),
-  ];
+  final List<Transaction> _transactions = [];
 
   void _addTransaction(Transaction newTransaction) {
     setState(() {

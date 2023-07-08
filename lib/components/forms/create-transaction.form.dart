@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:budgeting/models/transaction.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreateTransactionForm extends StatefulWidget {
