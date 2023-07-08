@@ -57,13 +57,13 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                     SizedBox(
                       height: 50,
                       width: 150,
-                      child: CupertinoButton(
+                      child: MaterialButton(
                         onPressed: () => _submitForm(),
-                        color: CupertinoColors.activeBlue,
+                        color: Theme.of(context).colorScheme.secondary,
                         padding: const EdgeInsets.all(10),
-                        child: const Text(
+                        child: Text(
                           'New Transaction',
-                          style: TextStyle(fontSize: 16),
+                          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white)
                         ),
                       ),
                     ),
