@@ -31,24 +31,31 @@ class TransactionsChart extends StatelessWidget {
     });
   }
 
+  double get recentTransactionsTotal {
+    return groupedTransactions
+        .map((e) => e['value'] as double)
+        .fold(0, (previousValue, element) => previousValue + element);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 40),
       child: Card(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.primary,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ...groupedTransactions.reversed.toList().map((tr) => ChartBar(
-                  label: tr['day'] as String,
-                  total: recentTransactions
-                      .map((tr) => tr.value)
-                      .reduce((value, element) => value + element),
-                  todaySpent: tr['value'] as double))
+              ...groupedTransactions.reversed.toList().map((tr) => Flexible(
+                    fit: FlexFit.tight,
+                    child: ChartBar(
+                        label: tr['day'] as String,
+                        total: recentTransactionsTotal,
+                        todaySpent: tr['value'] as double),
+                  ))
             ],
           ),
         ),

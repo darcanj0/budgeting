@@ -21,39 +21,38 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(3),
-      child: Column(
-        children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Container(
-            height: 80,
-            width: 10,
-            margin: const EdgeInsets.all(10),
-            child: Stack(alignment: Alignment.bottomCenter, children: [
-              Container(
-                decoration: barDecoration,
+    return Column(
+      children: [
+        Text(
+          label,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        Container(
+          height: 80,
+          width: 10,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          child: Stack(alignment: Alignment.bottomCenter, children: [
+            Container(
+              decoration: barDecoration,
+            ),
+            FractionallySizedBox(
+              heightFactor: todaySpent / total,
+              child: Container(
+                alignment: AlignmentDirectional.bottomCenter,
+                decoration: barDecoration.copyWith(
+                    color: Theme.of(context).colorScheme.secondary),
               ),
-              FractionallySizedBox(
-                heightFactor: todaySpent / total,
-                child: Container(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  decoration: barDecoration.copyWith(
-                      color: Theme.of(context).colorScheme.primary),
-                ),
-              )
-            ]),
-          ),
-          Text(
-            'U\$${todaySpent.toStringAsFixed(2)}',
+            )
+          ]),
+        ),
+        FittedBox(
+          child: Text(
+            todaySpent.toStringAsFixed(2),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 12, color: const Color.fromARGB(255, 241, 240, 240)),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
