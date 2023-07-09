@@ -1,7 +1,7 @@
 import 'package:budgeting/components/forms/create-transaction.form.dart';
 import 'package:flutter/material.dart';
 
-import '../components/dashboards/transactions.dashboard.dart';
+import '../components/charts/transactions.chart.dart';
 import '../components/lists/transaction.list.dart';
 import '../models/transaction.dart';
 
@@ -13,7 +13,31 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: '0',
+        title: 'old',
+        value: 300,
+        date: DateTime.now().subtract(const Duration(days: 33))),
+    Transaction(
+        id: '1',
+        title: 'title',
+        value: 100,
+        date: DateTime.now().subtract(const Duration(days: 3))),
+    Transaction(
+        id: '2',
+        title: 'other',
+        value: 150,
+        date: DateTime.now().subtract(const Duration(days: 4)))
+  ];
+
+  List<Transaction> get _recentTransactions {
+    const Duration oneWeek = Duration(days: 7);
+    return _transactions
+        .where(
+            (element) => element.date.isAfter(DateTime.now().subtract(oneWeek)))
+        .toList();
+  }
 
   void _addTransaction(Transaction newTransaction) {
     setState(() {
@@ -49,7 +73,7 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const TransactionsDashboard(),
+              TransactionsChart(recentTransactions: _recentTransactions),
               Column(children: [
                 TransactionList(transactions: _transactions),
               ])
