@@ -42,7 +42,7 @@ class TransactionsChart extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 40),
       child: Card(
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).primaryColor,
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(10),

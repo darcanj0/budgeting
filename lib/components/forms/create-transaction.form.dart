@@ -60,10 +60,14 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                         onPressed: () => _submitForm(),
                         color: Theme.of(context).colorScheme.secondary,
                         padding: const EdgeInsets.all(10),
-                        child: Text(
-                          'New Transaction',
-                          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white)
-                        ),
+                        child: Text('New Transaction',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background)),
                       ),
                     ),
                   ],

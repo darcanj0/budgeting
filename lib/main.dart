@@ -14,16 +14,21 @@ class BudgetingApp extends StatelessWidget {
     return MaterialApp(
       home: const HomePage(),
       theme: ThemeData(
-        brightness: Brightness.light,
-        textTheme: GoogleFonts.heeboTextTheme().copyWith(
-          bodyMedium: const TextStyle(fontWeight: FontWeight.bold),
-          titleLarge: const TextStyle(color: Colors.white)
-        ),
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-          primary: Colors.purple,
-          secondary: Colors.green.shade700,
-        )
-      ),
+          brightness: Brightness.light,
+          textTheme: GoogleFonts.heeboTextTheme().copyWith(
+              bodyMedium: const TextStyle(fontWeight: FontWeight.w500),
+              titleLarge:
+                  const TextStyle(color: Color.fromARGB(242, 238, 236, 241)),
+              headlineSmall: const TextStyle(
+                color: Color.fromARGB(242, 238, 236, 241),
+              )),
+          iconTheme:
+              const IconThemeData(color: Color.fromARGB(242, 238, 236, 241)),
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+              primary: Colors.purple,
+              secondary: const Color.fromARGB(255, 55, 180, 59),
+              background: const Color.fromARGB(242, 238, 236, 241)),
+          useMaterial3: true),
     );
   }
 }

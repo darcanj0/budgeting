@@ -30,10 +30,8 @@ class TransactionList extends StatelessWidget {
                 ),
                 Text(
                   'Created transaction will appear here',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.grey),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: const Color.fromARGB(255, 112, 107, 107)),
                 )
               ],
             )

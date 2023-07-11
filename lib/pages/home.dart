@@ -14,21 +14,21 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final List<Transaction> _transactions = [
-    Transaction(
-        id: '0',
-        title: 'old',
-        value: 300,
-        date: DateTime.now().subtract(const Duration(days: 33))),
-    Transaction(
-        id: '1',
-        title: 'title',
-        value: 100,
-        date: DateTime.now().subtract(const Duration(days: 3))),
-    Transaction(
-        id: '2',
-        title: 'other',
-        value: 150,
-        date: DateTime.now().subtract(const Duration(days: 4)))
+    // Transaction(
+    //     id: '0',
+    //     title: 'old',
+    //     value: 300,
+    //     date: DateTime.now().subtract(const Duration(days: 33))),
+    // Transaction(
+    //     id: '1',
+    //     title: 'title',
+    //     value: 100,
+    //     date: DateTime.now().subtract(const Duration(days: 3))),
+    // Transaction(
+    //     id: '2',
+    //     title: 'other',
+    //     value: 150,
+    //     date: DateTime.now().subtract(const Duration(days: 4)))
   ];
 
   List<Transaction> get _recentTransactions {
@@ -62,11 +62,20 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Transactions'), actions: [
-        IconButton(
-            onPressed: () => _openCreateTransactionFormModal(context),
-            icon: const Icon(Icons.add))
-      ]),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          title: Text('Transactions',
+              style: Theme.of(context).textTheme.headlineSmall),
+          backgroundColor: Theme.of(context).primaryColor,
+          actions: [
+            IconButton(
+              onPressed: () => _openCreateTransactionFormModal(context),
+              icon: Icon(
+                Icons.add,
+                color: IconTheme.of(context).color,
+              ),
+            )
+          ]),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -82,6 +91,7 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).colorScheme.primary,
           child: const Icon(Icons.add),
           onPressed: () => _openCreateTransactionFormModal(context)),
     );

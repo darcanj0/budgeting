@@ -36,7 +36,7 @@ class ChartBar extends StatelessWidget {
               decoration: barDecoration,
             ),
             FractionallySizedBox(
-              heightFactor: todaySpent / total,
+              heightFactor: total == 0 ? 0 : todaySpent / total,
               child: Container(
                 alignment: AlignmentDirectional.bottomCenter,
                 decoration: barDecoration.copyWith(
@@ -49,7 +49,7 @@ class ChartBar extends StatelessWidget {
           child: Text(
             todaySpent.toStringAsFixed(2),
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 12, color: const Color.fromARGB(255, 241, 240, 240)),
+                fontSize: 12, color: Theme.of(context).colorScheme.background),
           ),
         ),
       ],
