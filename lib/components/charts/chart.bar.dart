@@ -45,11 +45,15 @@ class ChartBar extends StatelessWidget {
             )
           ]),
         ),
-        FittedBox(
-          child: Text(
-            todaySpent.toStringAsFixed(2),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 12, color: Theme.of(context).colorScheme.background),
+        SizedBox(
+          height: 20,
+          child: FittedBox(
+            child: Text(
+              todaySpent.toStringAsFixed(2),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontSize: 12,
+                  color: Theme.of(context).colorScheme.background),
+            ),
           ),
         ),
       ],
