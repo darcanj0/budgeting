@@ -12,42 +12,24 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
-      shape: const ContinuousRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.elliptical(10, 10))),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _transaction.title,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text(
-                    DateFormat('d/MMM/y').format(_transaction.date),
-                    style: const TextStyle(color: Colors.grey),
-                  )
-                ],
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
+      color: Theme.of(context).colorScheme.background,
+      child: ListTile(
+        leading: CircleAvatar(
+            radius: 30,
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: FittedBox(
+                child: Text('U\$ ${_transaction.value.toStringAsFixed(2)}'),
               ),
-            ),
-            Container(
-                margin:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                child: Text(
-                  'U\$ ${_transaction.value.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.red),
-                )),
-          ]),
+            )),
+        title: Text(
+          _transaction.title,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        subtitle: Text(DateFormat('d MMM y').format(_transaction.date)),
+      ),
     );
   }
 }

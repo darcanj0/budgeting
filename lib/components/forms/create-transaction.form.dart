@@ -58,12 +58,12 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                       width: 150,
                       child: MaterialButton(
                         onPressed: () => _submitForm(),
-                        color: Theme.of(context).colorScheme.secondary,
                         padding: const EdgeInsets.all(10),
+                        color: Theme.of(context).primaryColor,
                         child: Text('New Transaction',
                             style: Theme.of(context)
                                 .textTheme
-                                .titleMedium!
+                                .bodyMedium!
                                 .copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
