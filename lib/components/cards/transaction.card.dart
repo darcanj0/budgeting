@@ -28,7 +28,7 @@ class TransactionCard extends StatelessWidget {
           _transaction.title,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        subtitle: Text(DateFormat('d MMM y').format(_transaction.date)),
+        subtitle: Text(DateFormat('MMM d y').format(_transaction.date)),
       ),
     );
   }
