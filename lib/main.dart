@@ -30,9 +30,11 @@ class BudgetingApp extends StatelessWidget {
           iconTheme:
               const IconThemeData(color: Color.fromARGB(242, 238, 236, 241)),
           colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: Colors.purple,
-              secondary: const Color.fromARGB(255, 55, 180, 59),
-              background: const Color.fromARGB(242, 238, 236, 241)),
+                primary: Colors.purple,
+                secondary: const Color.fromARGB(255, 55, 180, 59),
+                background: const Color.fromARGB(242, 238, 236, 241),
+                error: const Color.fromARGB(255, 226, 82, 72),
+              ),
           useMaterial3: true),
     );
   }

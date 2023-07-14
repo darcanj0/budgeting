@@ -47,6 +47,12 @@ class HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
   }
 
+  void _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   void _openCreateTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -84,7 +90,8 @@ class HomePageState extends State<HomePage> {
             children: [
               TransactionsChart(recentTransactions: _recentTransactions),
               Column(children: [
-                TransactionList(transactions: _transactions),
+                TransactionList(
+                    transactions: _transactions, onRemove: _removeTransaction),
               ])
             ],
           ),
