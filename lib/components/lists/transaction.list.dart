@@ -10,42 +10,41 @@ class TransactionList extends StatelessWidget {
       {super.key, required this.transactions, required this.onRemove});
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 450,
-      child: transactions.isEmpty
-          ? Column(
-              children: [
-                SizedBox(
-                  height: 200,
-                  child: Image.asset(
-                    'assets/images/empty_cart.png',
-                    fit: BoxFit.cover,
-                  ),
+    return transactions.isEmpty
+        ? Column(
+            children: [
+              SizedBox(
+                height: 200,
+                child: Image.asset(
+                  'assets/images/empty_cart.png',
+                  fit: BoxFit.cover,
                 ),
-                Text('No transaction registered!',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: Colors.black87)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Created transaction will appear here',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: const Color.fromARGB(255, 112, 107, 107)),
-                )
-              ],
-            )
-          : ListView.builder(
-              itemCount: transactions.length,
-              itemBuilder: (ctx, index) {
-                final Transaction transaction = transactions[index];
-                return TransactionCard(
-                  transaction: transaction,
-                  onRemove: onRemove,
-                );
-              }),
-    );
+              ),
+              Text('No transaction registered!',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: Colors.black87)),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Created transaction will appear here',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: const Color.fromARGB(255, 112, 107, 107)),
+              )
+            ],
+          )
+        : ListView.builder(
+            itemCount: transactions.length,
+            itemBuilder: (ctx, index) {
+              final Transaction transaction = transactions[index];
+              return TransactionCard(
+                transaction: transaction,
+                onRemove: onRemove,
+              );
+            });
   }
 }

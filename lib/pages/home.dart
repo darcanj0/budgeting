@@ -67,32 +67,44 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppBar appBar = AppBar(
+        title: Text('Transactions',
+            style: Theme.of(context).textTheme.headlineSmall),
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          IconButton(
+            onPressed: () => _openCreateTransactionFormModal(context),
+            icon: Icon(
+              Icons.add,
+              color: IconTheme.of(context).color,
+            ),
+          )
+        ]);
+    const double chartMarginInPx = 15;
+    final double avaliableHeight = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top -
+        (chartMarginInPx * 2);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-          title: Text('Transactions',
-              style: Theme.of(context).textTheme.headlineSmall),
-          backgroundColor: Theme.of(context).primaryColor,
-          actions: [
-            IconButton(
-              onPressed: () => _openCreateTransactionFormModal(context),
-              icon: Icon(
-                Icons.add,
-                color: IconTheme.of(context).color,
-              ),
-            )
-          ]),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TransactionsChart(recentTransactions: _recentTransactions),
-              Column(children: [
-                TransactionList(
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
+                height: avaliableHeight * 0.25,
+                child:
+                    TransactionsChart(recentTransactions: _recentTransactions),
+              ),
+              SizedBox(
+                height: avaliableHeight * 0.75,
+                child: TransactionList(
                     transactions: _transactions, onRemove: _removeTransaction),
-              ])
+              )
             ],
           ),
         ),

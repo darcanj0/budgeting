@@ -39,25 +39,22 @@ class TransactionsChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 40),
-      child: Card(
-        color: Theme.of(context).primaryColor,
-        elevation: 5,
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ...groupedTransactions.reversed.toList().map((tr) => Flexible(
-                    fit: FlexFit.tight,
-                    child: ChartBar(
-                        label: tr['day'] as String,
-                        total: recentTransactionsTotal,
-                        todaySpent: tr['value'] as double),
-                  ))
-            ],
-          ),
+    return Card(
+      color: Theme.of(context).primaryColor,
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ...groupedTransactions.reversed.toList().map((tr) => Flexible(
+                  fit: FlexFit.tight,
+                  child: ChartBar(
+                      label: tr['day'] as String,
+                      total: recentTransactionsTotal,
+                      todaySpent: tr['value'] as double),
+                ))
+          ],
         ),
       ),
     );
