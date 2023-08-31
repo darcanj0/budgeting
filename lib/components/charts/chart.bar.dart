@@ -21,42 +21,50 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        Container(
-          height: 80,
-          width: 10,
-          margin: const EdgeInsets.symmetric(vertical: 10),
-          child: Stack(alignment: Alignment.bottomCenter, children: [
-            Container(
-              decoration: barDecoration,
-            ),
-            FractionallySizedBox(
-              heightFactor: total == 0 ? 0 : todaySpent / total,
-              child: Container(
-                alignment: AlignmentDirectional.bottomCenter,
-                decoration: barDecoration.copyWith(
-                    color: Theme.of(context).colorScheme.secondary),
-              ),
-            )
-          ]),
-        ),
-        SizedBox(
-          height: 20,
-          child: FittedBox(
+    return LayoutBuilder(
+      builder: (ctx, constraints) => Column(
+        children: [
+          SizedBox(
+            height: constraints.maxHeight * 0.15,
             child: Text(
-              todaySpent.toStringAsFixed(2),
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 12,
-                  color: Theme.of(context).colorScheme.background),
+              label,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: Theme.of(context).textTheme.titleLarge!.fontSize! *
+                      MediaQuery.of(context).textScaleFactor),
             ),
           ),
-        ),
-      ],
+          Container(
+            height: constraints.maxHeight * 0.65,
+            width: constraints.maxWidth * 0.25,
+            margin:
+                EdgeInsets.symmetric(vertical: constraints.maxHeight * 0.05),
+            child: Stack(alignment: Alignment.bottomCenter, children: [
+              Container(
+                decoration: barDecoration,
+              ),
+              FractionallySizedBox(
+                heightFactor: total == 0 ? 0 : todaySpent / total,
+                child: Container(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  decoration: barDecoration.copyWith(
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
+              )
+            ]),
+          ),
+          SizedBox(
+            height: constraints.maxHeight * 0.1,
+            child: FittedBox(
+              child: Text(
+                todaySpent.toStringAsFixed(2),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.background),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

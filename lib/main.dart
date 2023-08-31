@@ -19,10 +19,10 @@ class BudgetingApp extends StatelessWidget {
             bodyMedium: const TextStyle(fontWeight: FontWeight.w500),
             titleLarge:
                 const TextStyle(color: Color.fromARGB(242, 238, 236, 241)),
-            titleMedium: const TextStyle(
+            titleMedium: TextStyle(
                 color: Colors.black87,
                 fontWeight: FontWeight.w700,
-                fontSize: 20),
+                fontSize: 20 * MediaQuery.of(context).textScaleFactor),
             headlineSmall: const TextStyle(
               color: Color.fromARGB(242, 238, 236, 241),
             ),

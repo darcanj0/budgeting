@@ -96,12 +96,12 @@ class HomePageState extends State<HomePage> {
             children: [
               Container(
                 margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
-                height: avaliableHeight * 0.25,
+                height: avaliableHeight * 0.3,
                 child:
                     TransactionsChart(recentTransactions: _recentTransactions),
               ),
               SizedBox(
-                height: avaliableHeight * 0.75,
+                height: avaliableHeight * 0.7,
                 child: TransactionList(
                     transactions: _transactions, onRemove: _removeTransaction),
               )
