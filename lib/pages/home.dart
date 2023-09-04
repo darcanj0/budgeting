@@ -65,6 +65,8 @@ class HomePageState extends State<HomePage> {
         });
   }
 
+  bool showChart = false;
+
   @override
   Widget build(BuildContext context) {
     final AppBar appBar = AppBar(
@@ -85,6 +87,7 @@ class HomePageState extends State<HomePage> {
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top -
         (chartMarginInPx * 2);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: appBar,
@@ -94,17 +97,37 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
-                height: avaliableHeight * 0.3,
-                child:
-                    TransactionsChart(recentTransactions: _recentTransactions),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  children: [
+                    const Text('Show chart'),
+                    Switch(
+                      value: showChart,
+                      onChanged: (newValue) {
+                        setState(() {
+                          showChart = newValue;
+                        });
+                      },
+                      inactiveTrackColor: Colors.grey,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(
-                height: avaliableHeight * 0.7,
-                child: TransactionList(
-                    transactions: _transactions, onRemove: _removeTransaction),
-              )
+              if (showChart)
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
+                  height: avaliableHeight * 0.3,
+                  child: TransactionsChart(
+                      recentTransactions: _recentTransactions),
+                ),
+              if (!showChart)
+                SizedBox(
+                  height: avaliableHeight * 0.7,
+                  child: TransactionList(
+                      transactions: _transactions,
+                      onRemove: _removeTransaction),
+                )
             ],
           ),
         ),
