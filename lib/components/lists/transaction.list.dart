@@ -10,6 +10,8 @@ class TransactionList extends StatelessWidget {
       {super.key, required this.transactions, required this.onRemove});
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return transactions.isEmpty
         ? LayoutBuilder(
             builder: (ctx, constraints) {
@@ -23,15 +25,15 @@ class TransactionList extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: constraints.maxHeight * 0.2,
+                    height: isLandscape ? constraints.maxHeight * 0.2 : 30,
                     child: Text('No transaction registered!',
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!
                             .copyWith(color: Colors.black87)),
                   ),
-                  SizedBox(
-                    height: constraints.maxHeight * 0.02,
+                  const SizedBox(
+                    height: 5,
                   ),
                   SizedBox(
                     height: constraints.maxHeight * 0.17,

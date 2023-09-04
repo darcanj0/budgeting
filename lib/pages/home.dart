@@ -69,6 +69,9 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     final AppBar appBar = AppBar(
         title: Text('Transactions',
             style: Theme.of(context).textTheme.headlineSmall),
@@ -97,31 +100,32 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  children: [
-                    const Text('Show chart'),
-                    Switch(
-                      value: showChart,
-                      onChanged: (newValue) {
-                        setState(() {
-                          showChart = newValue;
-                        });
-                      },
-                      inactiveTrackColor: Colors.grey,
-                    ),
-                  ],
+              if (isLandscape)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    children: [
+                      const Text('Show chart'),
+                      Switch(
+                        value: showChart,
+                        onChanged: (newValue) {
+                          setState(() {
+                            showChart = newValue;
+                          });
+                        },
+                        inactiveTrackColor: Colors.grey,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              if (showChart)
+              if (showChart || !isLandscape)
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
-                  height: avaliableHeight * 0.3,
+                  height: avaliableHeight * (isLandscape ? 0.7 : 0.3),
                   child: TransactionsChart(
                       recentTransactions: _recentTransactions),
                 ),
-              if (!showChart)
+              if (!showChart || !isLandscape)
                 SizedBox(
                   height: avaliableHeight * 0.7,
                   child: TransactionList(
