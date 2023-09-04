@@ -50,6 +50,11 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    final TextTheme textTheme = theme.textTheme;
+
+    final TextStyle? bodyMediumTextTheme = textTheme.bodyMedium;
     return Card(
         elevation: 5,
         child: Padding(
@@ -78,16 +83,16 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                           ? 'No date selected'
                           : DateFormat('MMM d y')
                               .format(_selectedDate as DateTime),
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.normal,
-                          ),
+                      style: bodyMediumTextTheme!.copyWith(
+                        fontWeight: FontWeight.normal,
+                      ),
                     ),
                     MaterialButton(
                       onPressed: _showDatePicker,
                       child: Text(
                         'Select Date',
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context).colorScheme.primary),
+                        style: bodyMediumTextTheme.copyWith(
+                            color: colorScheme.primary),
                       ),
                     )
                   ],
@@ -106,19 +111,14 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                         onPressed: () => _submitForm(),
                         padding: const EdgeInsets.all(10),
                         shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                                color: Theme.of(context).colorScheme.primary),
+                            side: BorderSide(color: colorScheme.primary),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(6))),
-                        color: Theme.of(context).primaryColor,
+                        color: theme.primaryColor,
                         child: Text(
                           'New Transaction',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.background),
+                          style: textTheme.bodyMedium!
+                              .copyWith(color: colorScheme.background),
                         ),
                       ),
                     ),

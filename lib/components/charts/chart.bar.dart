@@ -21,6 +21,10 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    final TextTheme textTheme = theme.textTheme;
+
     return LayoutBuilder(
       builder: (ctx, constraints) => Column(
         children: [
@@ -28,8 +32,8 @@ class ChartBar extends StatelessWidget {
             height: constraints.maxHeight * 0.15,
             child: Text(
               label,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontSize: Theme.of(context).textTheme.titleLarge!.fontSize! *
+              style: textTheme.titleLarge!.copyWith(
+                  fontSize: textTheme.titleLarge!.fontSize! *
                       MediaQuery.of(context).textScaleFactor),
             ),
           ),
@@ -46,8 +50,8 @@ class ChartBar extends StatelessWidget {
                 heightFactor: total == 0 ? 0 : todaySpent / total,
                 child: Container(
                   alignment: AlignmentDirectional.bottomCenter,
-                  decoration: barDecoration.copyWith(
-                      color: Theme.of(context).colorScheme.secondary),
+                  decoration:
+                      barDecoration.copyWith(color: colorScheme.secondary),
                 ),
               )
             ]),
@@ -57,9 +61,8 @@ class ChartBar extends StatelessWidget {
             child: FittedBox(
               child: Text(
                 todaySpent.toStringAsFixed(2),
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 12,
-                    color: Theme.of(context).colorScheme.background),
+                style: textTheme.bodyMedium!
+                    .copyWith(fontSize: 12, color: colorScheme.background),
               ),
             ),
           ),

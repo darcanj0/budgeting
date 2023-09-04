@@ -69,13 +69,16 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    final TextTheme textTheme = theme.textTheme;
+    final IconThemeData iconTheme = IconTheme.of(context);
+    bool isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final AppBar appBar = AppBar(
-        title: Text('Transactions',
-            style: Theme.of(context).textTheme.headlineSmall),
-        backgroundColor: Theme.of(context).primaryColor,
+        title: Text('Transactions', style: textTheme.headlineSmall),
+        backgroundColor: theme.primaryColor,
         actions: [
           if (isLandscape)
             IconButton(
@@ -84,21 +87,21 @@ class HomePageState extends State<HomePage> {
               }),
               icon: Icon(
                 showChart ? Icons.list : Icons.bar_chart,
-                color: IconTheme.of(context).color,
+                color: iconTheme.color,
               ),
             ),
           IconButton(
             onPressed: () => _openCreateTransactionFormModal(context),
             icon: Icon(
               Icons.add,
-              color: IconTheme.of(context).color,
+              color: iconTheme.color,
             ),
           )
         ]);
     const double chartMarginInPx = 15;
-    final double avaliableHeight = MediaQuery.of(context).size.height -
+    final double avaliableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top -
+        mediaQuery.padding.top -
         (chartMarginInPx * 2);
 
     return Scaffold(
@@ -129,7 +132,7 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: colorScheme.primary,
           child: const Icon(Icons.add),
           onPressed: () => _openCreateTransactionFormModal(context)),
     );

@@ -12,11 +12,14 @@ class TransactionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool showLabel = MediaQuery.of(context).size.width > 480;
+    final ThemeData theme = Theme.of(context);
+    final ColorScheme colorScheme = theme.colorScheme;
+    final TextTheme textTheme = theme.textTheme;
 
     return Card(
       elevation: 3,
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
-      color: Theme.of(context).colorScheme.background,
+      color: colorScheme.background,
       child: ListTile(
         leading: CircleAvatar(
             radius: 30,
@@ -28,7 +31,7 @@ class TransactionCard extends StatelessWidget {
             )),
         title: Text(
           transaction.title,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: textTheme.titleMedium,
         ),
         subtitle: Text(DateFormat('MMM d y').format(transaction.date)),
         trailing: showLabel
@@ -36,18 +39,17 @@ class TransactionCard extends StatelessWidget {
                 onPressed: () => onRemove(transaction.id),
                 icon: Icon(
                   Icons.delete,
-                  color: Theme.of(context).colorScheme.error,
+                  color: colorScheme.error,
                 ),
                 label: Text(
                   'DELETE',
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                      fontWeight: FontWeight.bold),
+                      color: colorScheme.error, fontWeight: FontWeight.bold),
                 ))
             : IconButton(
                 icon: Icon(
                   Icons.delete,
-                  color: Theme.of(context).colorScheme.error,
+                  color: colorScheme.error,
                 ),
                 onPressed: () => onRemove(transaction.id),
               ),
