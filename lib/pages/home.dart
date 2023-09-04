@@ -113,13 +113,13 @@ class HomePageState extends State<HomePage> {
               if (showChart || !isLandscape)
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
-                  height: avaliableHeight * (isLandscape ? 0.7 : 0.3),
+                  height: avaliableHeight * (isLandscape ? 0.85 : 0.3),
                   child: TransactionsChart(
                       recentTransactions: _recentTransactions),
                 ),
               if (!showChart || !isLandscape)
                 SizedBox(
-                  height: avaliableHeight * 0.7,
+                  height: avaliableHeight * (isLandscape ? 1 : 0.7),
                   child: TransactionList(
                       transactions: _transactions,
                       onRemove: _removeTransaction),
