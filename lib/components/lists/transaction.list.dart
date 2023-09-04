@@ -11,31 +11,39 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return transactions.isEmpty
-        ? Column(
-            children: [
-              SizedBox(
-                height: 200,
-                child: Image.asset(
-                  'assets/images/empty_cart.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Text('No transaction registered!',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleLarge!
-                      .copyWith(color: Colors.black87)),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Created transaction will appear here',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: const Color.fromARGB(255, 112, 107, 107)),
-              )
-            ],
+        ? LayoutBuilder(
+            builder: (ctx, constraints) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: constraints.maxHeight * 0.6,
+                    child: Image.asset(
+                      'assets/images/empty_cart.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.2,
+                    child: Text('No transaction registered!',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.black87)),
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.02,
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.17,
+                    child: Text(
+                      'Created transaction will appear here',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: const Color.fromARGB(255, 112, 107, 107)),
+                    ),
+                  )
+                ],
+              );
+            },
           )
         : ListView.builder(
             itemCount: transactions.length,
