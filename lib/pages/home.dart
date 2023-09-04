@@ -77,6 +77,16 @@ class HomePageState extends State<HomePage> {
             style: Theme.of(context).textTheme.headlineSmall),
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
+          if (isLandscape)
+            IconButton(
+              onPressed: () => setState(() {
+                showChart = !showChart;
+              }),
+              icon: Icon(
+                showChart ? Icons.list : Icons.bar_chart,
+                color: IconTheme.of(context).color,
+              ),
+            ),
           IconButton(
             onPressed: () => _openCreateTransactionFormModal(context),
             icon: Icon(
@@ -100,24 +110,6 @@ class HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if (isLandscape)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Row(
-                    children: [
-                      const Text('Show chart'),
-                      Switch(
-                        value: showChart,
-                        onChanged: (newValue) {
-                          setState(() {
-                            showChart = newValue;
-                          });
-                        },
-                        inactiveTrackColor: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
               if (showChart || !isLandscape)
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
