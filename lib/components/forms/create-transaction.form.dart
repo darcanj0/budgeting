@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:budgeting/components/buttons/adaptative_button.dart';
+import 'package:budgeting/components/text/adaptative_text.dart';
 import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -62,15 +63,15 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              TextField(
-                decoration: const InputDecoration(labelText: 'Title'),
+              AdaptativeText(
                 controller: _titleController,
-                onSubmitted: (value) => _submitForm(),
+                onSubmit: (value) => _submitForm(),
+                label: 'Title',
               ),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Value (U\$D)'),
+              AdaptativeText(
                 controller: _valueController,
-                onSubmitted: (value) => _submitForm(),
+                onSubmit: (value) => _submitForm(),
+                label: 'Value (U\$D)',
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),

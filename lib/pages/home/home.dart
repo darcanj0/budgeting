@@ -74,7 +74,15 @@ class HomePageState extends State<HomePage> {
 
     Widget _getIconButton(IconData icon, Function() fn) {
       return isIos
-          ? GestureDetector(onTap: fn, child: Icon(icon))
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: GestureDetector(
+                  onTap: fn,
+                  child: Icon(
+                    icon,
+                    color: colorScheme.inverseSurface,
+                  )),
+            )
           : IconButton(onPressed: fn, icon: Icon(icon, color: iconTheme.color));
     }
 
@@ -96,8 +104,11 @@ class HomePageState extends State<HomePage> {
 
     final dynamic appBar = isIos
         ? CupertinoNavigationBar(
-            middle: Text('Transactions', style: textTheme.headlineSmall),
+            middle: Text('Transactions',
+                style: textTheme.headlineSmall!.copyWith(
+                    color: Colors.black87, fontWeight: FontWeight.bold)),
             trailing: Row(mainAxisSize: MainAxisSize.min, children: actions),
+            backgroundColor: colorScheme.background,
           )
         : AppBar(
             title: Text('Transactions', style: textTheme.headlineSmall),
@@ -112,14 +123,15 @@ class HomePageState extends State<HomePage> {
 
     return isIos
         ? CupertinoPageScaffold(
+            navigationBar: appBar,
             child: HomePageBody(
-            avaliableHeight: avaliableHeight,
-            chartMarginInPx: chartMarginInPx,
-            isLandscape: isLandscape,
-            showChart: showChart,
-            recentTransactions: _recentTransactions,
-            transactions: _transactions,
-          ))
+              avaliableHeight: avaliableHeight,
+              chartMarginInPx: chartMarginInPx,
+              isLandscape: isLandscape,
+              showChart: showChart,
+              recentTransactions: _recentTransactions,
+              transactions: _transactions,
+            ))
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: appBar,
