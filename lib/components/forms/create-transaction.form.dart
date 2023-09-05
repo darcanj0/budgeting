@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:budgeting/components/buttons/adaptative_button.dart';
 import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -107,20 +108,8 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
                     SizedBox(
                       height: 50,
                       width: 150,
-                      child: MaterialButton(
-                        onPressed: () => _submitForm(),
-                        padding: const EdgeInsets.all(10),
-                        shape: RoundedRectangleBorder(
-                            side: BorderSide(color: colorScheme.primary),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(6))),
-                        color: theme.primaryColor,
-                        child: Text(
-                          'New Transaction',
-                          style: textTheme.bodyMedium!
-                              .copyWith(color: colorScheme.background),
-                        ),
-                      ),
+                      child: AdaptativeButton(
+                          text: 'New Transaction', onPressed: _submitForm),
                     ),
                   ],
                 ),
