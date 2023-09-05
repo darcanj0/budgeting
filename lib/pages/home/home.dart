@@ -1,9 +1,10 @@
-import 'package:budgeting/components/forms/create-transaction.form.dart';
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import '../components/charts/transactions.chart.dart';
-import '../components/lists/transaction.list.dart';
-import '../models/transaction.dart';
+import 'package:budgeting/components/forms/create-transaction.form.dart';
+import 'package:budgeting/pages/home/body.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '../../models/transaction.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -75,6 +76,7 @@ class HomePageState extends State<HomePage> {
     final TextTheme textTheme = theme.textTheme;
     final IconThemeData iconTheme = IconTheme.of(context);
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
+    bool isIos = Platform.isIOS;
 
     final AppBar appBar = AppBar(
         title: Text('Transactions', style: textTheme.headlineSmall),
@@ -104,37 +106,33 @@ class HomePageState extends State<HomePage> {
         mediaQuery.padding.top -
         (chartMarginInPx * 2);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (showChart || !isLandscape)
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: chartMarginInPx),
-                  height: avaliableHeight * (isLandscape ? 0.85 : 0.3),
-                  child: TransactionsChart(
-                      recentTransactions: _recentTransactions),
-                ),
-              if (!showChart || !isLandscape)
-                SizedBox(
-                  height: avaliableHeight * (isLandscape ? 1 : 0.7),
-                  child: TransactionList(
-                      transactions: _transactions,
-                      onRemove: _removeTransaction),
-                )
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: colorScheme.primary,
-          child: const Icon(Icons.add),
-          onPressed: () => _openCreateTransactionFormModal(context)),
-    );
+    return isIos
+        ? CupertinoPageScaffold(
+            child: HomePageBody(
+            avaliableHeight: avaliableHeight,
+            chartMarginInPx: chartMarginInPx,
+            isLandscape: isLandscape,
+            showChart: showChart,
+            onRemove: _removeTransaction,
+            recentTransactions: _recentTransactions,
+            transactions: _transactions,
+          ))
+        : Scaffold(
+            backgroundColor: Colors.white,
+            appBar: appBar,
+            body: HomePageBody(
+              avaliableHeight: avaliableHeight,
+              chartMarginInPx: chartMarginInPx,
+              isLandscape: isLandscape,
+              showChart: showChart,
+              onRemove: _removeTransaction,
+              recentTransactions: _recentTransactions,
+              transactions: _transactions,
+            ),
+            floatingActionButton: FloatingActionButton(
+                backgroundColor: colorScheme.primary,
+                child: const Icon(Icons.add),
+                onPressed: () => _openCreateTransactionFormModal(context)),
+          );
   }
 }

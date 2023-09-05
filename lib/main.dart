@@ -1,4 +1,4 @@
-import 'package:budgeting/pages/home.dart';
+import 'package:budgeting/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
