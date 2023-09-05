@@ -35,28 +35,32 @@ class _HomePageBodyState extends State<HomePageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (widget.showChart || !widget.isLandscape)
-              Container(
-                margin: EdgeInsets.symmetric(vertical: widget.chartMarginInPx),
-                height:
-                    widget.avaliableHeight * (widget.isLandscape ? 0.85 : 0.3),
-                child: TransactionsChart(
-                    recentTransactions: widget.recentTransactions),
-              ),
-            if (!widget.showChart || !widget.isLandscape)
-              SizedBox(
-                height: widget.avaliableHeight * (widget.isLandscape ? 1 : 0.7),
-                child: TransactionList(
-                    transactions: widget.transactions,
-                    onRemove: _removeTransaction),
-              )
-          ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (widget.showChart || !widget.isLandscape)
+                Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: widget.chartMarginInPx),
+                  height: widget.avaliableHeight *
+                      (widget.isLandscape ? 0.85 : 0.3),
+                  child: TransactionsChart(
+                      recentTransactions: widget.recentTransactions),
+                ),
+              if (!widget.showChart || !widget.isLandscape)
+                SizedBox(
+                  height:
+                      widget.avaliableHeight * (widget.isLandscape ? 1 : 0.7),
+                  child: TransactionList(
+                      transactions: widget.transactions,
+                      onRemove: _removeTransaction),
+                )
+            ],
+          ),
         ),
       ),
     );

@@ -72,28 +72,38 @@ class HomePageState extends State<HomePage> {
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
     bool isIos = Platform.isIOS;
 
-    final AppBar appBar = AppBar(
-        title: Text('Transactions', style: textTheme.headlineSmall),
-        backgroundColor: theme.primaryColor,
-        actions: [
-          if (isLandscape)
-            IconButton(
-              onPressed: () => setState(() {
-                showChart = !showChart;
-              }),
-              icon: Icon(
-                showChart ? Icons.list : Icons.bar_chart,
-                color: iconTheme.color,
-              ),
-            ),
-          IconButton(
-            onPressed: () => _openCreateTransactionFormModal(context),
-            icon: Icon(
-              Icons.add,
-              color: iconTheme.color,
-            ),
+    Widget _getIconButton(IconData icon, Function() fn) {
+      return isIos
+          ? GestureDetector(onTap: fn, child: Icon(icon))
+          : IconButton(onPressed: fn, icon: Icon(icon, color: iconTheme.color));
+    }
+
+    final List<Widget> actions = [
+      if (isLandscape)
+        _getIconButton(
+          showChart
+              ? (isIos ? CupertinoIcons.list_bullet : Icons.list)
+              : (isIos ? CupertinoIcons.chart_bar : Icons.bar_chart),
+          () => setState(() {
+            showChart = !showChart;
+          }),
+        ),
+      _getIconButton(
+        isIos ? CupertinoIcons.add : Icons.add,
+        () => _openCreateTransactionFormModal(context),
+      )
+    ];
+
+    final dynamic appBar = isIos
+        ? CupertinoNavigationBar(
+            middle: Text('Transactions', style: textTheme.headlineSmall),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: actions),
           )
-        ]);
+        : AppBar(
+            title: Text('Transactions', style: textTheme.headlineSmall),
+            backgroundColor: theme.primaryColor,
+            actions: actions,
+          );
     const double chartMarginInPx = 15;
     final double avaliableHeight = mediaQuery.size.height -
         appBar.preferredSize.height -
