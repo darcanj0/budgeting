@@ -72,7 +72,7 @@ class HomePageState extends State<HomePage> {
     bool isLandscape = mediaQuery.orientation == Orientation.landscape;
     bool isIos = Platform.isIOS;
 
-    Widget _getIconButton(IconData icon, Function() fn) {
+    Widget getIconButton(IconData icon, Function() fn) {
       return isIos
           ? Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -88,7 +88,7 @@ class HomePageState extends State<HomePage> {
 
     final List<Widget> actions = [
       if (isLandscape)
-        _getIconButton(
+        getIconButton(
           showChart
               ? (isIos ? CupertinoIcons.list_bullet : Icons.list)
               : (isIos ? CupertinoIcons.chart_bar : Icons.bar_chart),
@@ -96,7 +96,7 @@ class HomePageState extends State<HomePage> {
             showChart = !showChart;
           }),
         ),
-      _getIconButton(
+      getIconButton(
         isIos ? CupertinoIcons.add : Icons.add,
         () => _openCreateTransactionFormModal(context),
       )

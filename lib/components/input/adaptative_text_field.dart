@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AdaptativeText extends StatelessWidget {
+class AdaptativeTextField extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String) onSubmit;
   final TextInputType keyboardType;
   final String label;
 
-  const AdaptativeText(
+  const AdaptativeTextField(
       {required this.controller,
       required this.onSubmit,
       required this.label,

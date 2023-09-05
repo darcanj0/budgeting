@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:budgeting/components/buttons/adaptative_button.dart';
-import 'package:budgeting/components/text/adaptative_text.dart';
+import 'package:budgeting/components/forms/adaptative_date_picker.dart';
+import 'package:budgeting/components/input/adaptative_text_field.dart';
 import 'package:budgeting/models/transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class CreateTransactionForm extends StatefulWidget {
   const CreateTransactionForm({super.key, required this.onSubmit});
@@ -31,75 +31,34 @@ class _CreateTransactionFormState extends State<CreateTransactionForm> {
     widget.onSubmit(newTransaction);
   }
 
-  void _showDatePicker() {
-    showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2020),
-            lastDate: DateTime.now())
-        .then((value) => {
-              value == null
-                  ? {}
-                  : {
-                      setState(
-                        () {
-                          _selectedDate = value;
-                        },
-                      )
-                    }
-            });
+  void changeDate(DateTime newDate) {
+    setState(() {
+      _selectedDate = newDate;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
-    final TextTheme textTheme = theme.textTheme;
-
-    final TextStyle? bodyMediumTextTheme = textTheme.bodyMedium;
     return Card(
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              AdaptativeText(
+              AdaptativeTextField(
                 controller: _titleController,
                 onSubmit: (value) => _submitForm(),
                 label: 'Title',
               ),
-              AdaptativeText(
+              AdaptativeTextField(
                 controller: _valueController,
                 onSubmit: (value) => _submitForm(),
                 label: 'Value (U\$D)',
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
               ),
-              SizedBox(
-                height: 70,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'No date selected'
-                          : DateFormat('MMM d y')
-                              .format(_selectedDate as DateTime),
-                      style: bodyMediumTextTheme!.copyWith(
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    MaterialButton(
-                      onPressed: _showDatePicker,
-                      child: Text(
-                        'Select Date',
-                        style: bodyMediumTextTheme.copyWith(
-                            color: colorScheme.primary),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              AdaptativeDatePicker(
+                  selectedDate: _selectedDate, onDateChanged: changeDate),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 6, vertical: 20),
