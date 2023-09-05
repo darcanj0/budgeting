@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import '../../components/charts/transactions.chart.dart';
 import '../../components/lists/transaction.list.dart';
 
-class HomePageBody extends StatelessWidget {
+class HomePageBody extends StatefulWidget {
   final bool isLandscape;
   final bool showChart;
   final double chartMarginInPx;
   final double avaliableHeight;
   final List<Transaction> recentTransactions;
   final List<Transaction> transactions;
-  final void Function(String) onRemove;
 
   const HomePageBody({
     required this.isLandscape,
@@ -20,9 +19,19 @@ class HomePageBody extends StatelessWidget {
     required this.avaliableHeight,
     required this.recentTransactions,
     required this.transactions,
-    required this.onRemove,
     super.key,
   });
+
+  @override
+  State<HomePageBody> createState() => _HomePageBodyState();
+}
+
+class _HomePageBodyState extends State<HomePageBody> {
+  void _removeTransaction(String id) {
+    setState(() {
+      widget.transactions.removeWhere((element) => element.id == id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +41,20 @@ class HomePageBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (showChart || !isLandscape)
+            if (widget.showChart || !widget.isLandscape)
               Container(
-                margin: EdgeInsets.symmetric(vertical: chartMarginInPx),
-                height: avaliableHeight * (isLandscape ? 0.85 : 0.3),
-                child:
-                    TransactionsChart(recentTransactions: recentTransactions),
+                margin: EdgeInsets.symmetric(vertical: widget.chartMarginInPx),
+                height:
+                    widget.avaliableHeight * (widget.isLandscape ? 0.85 : 0.3),
+                child: TransactionsChart(
+                    recentTransactions: widget.recentTransactions),
               ),
-            if (!showChart || !isLandscape)
+            if (!widget.showChart || !widget.isLandscape)
               SizedBox(
-                height: avaliableHeight * (isLandscape ? 1 : 0.7),
+                height: widget.avaliableHeight * (widget.isLandscape ? 1 : 0.7),
                 child: TransactionList(
-                    transactions: transactions, onRemove: onRemove),
+                    transactions: widget.transactions,
+                    onRemove: _removeTransaction),
               )
           ],
         ),
